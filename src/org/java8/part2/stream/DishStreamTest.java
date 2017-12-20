@@ -1,7 +1,10 @@
-package org.java8.part3.stream;
+package org.java8.part2.stream;
 
-import java.util.*;
-import java.util.stream.Collector;
+import org.java8.part3.stream.Dish;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class DishStreamTest {
@@ -27,63 +30,6 @@ public class DishStreamTest {
                 new Dish("roast fish",false,798, Dish.Type.FISH),
                 new Dish("Dongpo Braised Pork",false,934, Dish.Type.MEAT),
                 new Dish("Yangzhou Fried Rice",true,345, Dish.Type.OTHER));
-
-
-        //获取集合的数量
-        /*long howManyDishes = menu.stream().collect(Collectors.counting());
-        long howManyDishes2 = menu.stream().count();
-        System.out.println("the howManyDishes: " + howManyDishes);
-        System.out.println("the howManyDishes2: " + howManyDishes2);*/
-
-        //查找流中的最大值
-        /*Comparator<Dish> dishCaloriesComparator = Comparator.comparingInt(Dish::getCalories);
-        Optional<Dish> mostCalorieDish = menu.stream().collect(Collectors.maxBy(dishCaloriesComparator));
-        System.out.println(mostCalorieDish.get().getName());*/
-
-        //求和
-        /*int totalCalories = menu.stream().collect(Collectors.summingInt(Dish::getCalories));
-        System.out.println("all of the dish's calories: " + totalCalories);
-        //平均值
-        double avgCalories = menu.stream().collect(Collectors.averagingInt(Dish::getCalories));
-        System.out.println("the average calories of the dish: " + avgCalories);
-        //统计值
-        IntSummaryStatistics menuSummaryStatistics = menu.stream().collect(Collectors.summarizingInt(Dish::getCalories));
-        System.out.println(menuSummaryStatistics);*/
-
-        //连接字符串
-        /*String shortMenu = menu.stream().map(Dish::getName).collect(Collectors.joining("\n"));
-        System.out.println(shortMenu);*/
-
-        //广义的归约汇总
-        /*int totalCalories = menu.stream().collect(Collectors.reducing(0, Dish::getCalories, (i, j) -> i + j));
-        System.out.println("totalCalories: " + totalCalories);*/
-
-        //分组
-        /*Map< Dish.Type, List<Dish>> dishesByType = menu.stream().collect(Collectors.groupingBy(Dish::getType));
-        dishesByType.forEach((k,v) -> {
-            String names = v.stream().map(Dish::getName).collect(Collectors.joining(","));
-            System.out.println(k + "=[" + names + "]");
-        });*/
-
-        /*Map<Dish.Type,Optional<Dish>> mostCaloricByType = menu.stream().collect(Collectors.groupingBy(Dish::getType,Collectors.collectingAndThen(Collectors.maxBy(Comparator.comparingInt(Dish::getCalories)),Optional::get)));
-        mostCaloricByType.forEach((k,v) -> {
-            System.out.println(k + "=" + v.get().getName());
-        });*/
-
-
-        /**
-         * 分区
-         */
-        Map<Boolean,List<Dish>> partitionedMenu = menu.stream().collect(Collectors.partitioningBy(Dish::isVegetarian));
-
-        partitionedMenu.forEach((k,v) -> {
-            String names = v.stream().map(Dish::getName).collect(Collectors.joining(","));
-            System.out.println(k + "=[" + names + "]");
-        });
-
-
-
-
 
 
 
@@ -205,6 +151,10 @@ public class DishStreamTest {
         });*/
 
 
+        /**
+         * 分区
+         */
+        /*Map<Boolean,List<Dish>> partitionedMenu = menu.stream().collect(Collectors.partitioningBy(Dish::isVegetarian));*/
 
     }
 
