@@ -13,12 +13,12 @@ public class MergeSort {
         Arrays.stream(nums).forEach(s -> System.out.print(s + "\t"));
     }
 
-    public static int[] mergeSort(int[] nums, int p, int r) {
-        if (p < r) {
-            int q = (p + r) / 2;
-            mergeSort(nums, p, q);
-            mergeSort(nums, q + 1, r);
-            merge(nums, p, q, r);
+    public static int[] mergeSort(int[] nums, int low, int high) {
+        if (low < high) {
+            int mid = (low + high) / 2;
+            mergeSort(nums, low, mid);
+            mergeSort(nums, mid + 1, high);
+            merge(nums, low, mid, high);
         }
         return nums;
     }
@@ -34,8 +34,8 @@ public class MergeSort {
         for (int j = 0; j < n2; j++) {
             rr[j] = nums[q + j + 1];
         }
-        ll[n1] = Integer.MAX_VALUE;
-        rr[n2] = Integer.MAX_VALUE;
+        ll[n1] = Integer.MAX_VALUE;//哨兵值int的最大值
+        rr[n2] = Integer.MAX_VALUE;//哨兵值int的最大值
         int i = 0;
         int j = 0;
         //r为整个数组的最后一个元素的下标，而不是数组的length，循环a.length=r+1次 
