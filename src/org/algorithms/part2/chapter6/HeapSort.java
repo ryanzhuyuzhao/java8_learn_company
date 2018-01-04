@@ -49,6 +49,13 @@ public class HeapSort {
         }
     }
 
+    public static void heapSort(int[] num) {
+        buildMaxHeap(num);
+        for (int i = num.length - 1; i >= 1; i--) {
+            num[0] = num[i];
+        }
+    }
+
     /**
      * 维护最小堆性质
      * @param num
