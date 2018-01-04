@@ -3,6 +3,9 @@ package org.algorithms.part1.chapter4;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 找出数组中最大子数组
+ */
 public class FindMaxSubArray {
     public static void main(String[] args) {
         int[] nums = {-1231, -312321, -12, -1, -11, -33};
