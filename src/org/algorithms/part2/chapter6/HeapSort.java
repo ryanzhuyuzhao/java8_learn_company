@@ -10,8 +10,10 @@ public class HeapSort {
     public static void main(String[] args) {
         int[] num = { 4, 10, 14, 16, 29, 23, 22, 1, 3};
 //        maxHeapify(num, 0);
-        buildMaxHeap(num);
+//        buildMaxHeap(num);
+        num = heapSort(num);
         Arrays.stream(num).forEach(System.out::println);
+
     }
 
     /**
@@ -49,11 +51,20 @@ public class HeapSort {
         }
     }
 
-    public static void heapSort(int[] num) {
+    /**
+     * 堆排序
+     * @param num
+     * @return
+     */
+    public static int[] heapSort(int[] num) {
+        int[] result = new int[num.length];
         buildMaxHeap(num);
-        for (int i = num.length - 1; i >= 1; i--) {
-            num[0] = num[i];
+        for (int i = num.length - 1; i >= 0; i--) {
+            result[i] = num[0];
+            num = Arrays.copyOfRange(num, 1 ,num.length);
+            buildMaxHeap(num);
         }
+        return result;
     }
 
     /**
@@ -79,5 +90,31 @@ public class HeapSort {
             num[minimum] = exchange;
             maxHeapify(num, minimum);
         }
+    }
+
+    //==============================================最大优先级队列============================================
+    //未完待续 学习数据结构树结构再回来编写优先级队列代码
+    /**
+     * 返回队列中最大的元素
+     * @param num
+     * @return
+     */
+    public static int heapMaximum(int[] num) {
+        return num[0];
+    }
+
+    /**
+     * 返回队列中最大的元素并将其从队列中删除
+     * @param num
+     * @return
+     */
+    public static int heapExtractMax(int[] num) {
+        if (num.length < 1) {
+            throw new RuntimeException("heap underflow");
+        }
+        int max = num[0];
+        num = Arrays.copyOfRange(num, 1 ,num.length);
+        buildMaxHeap(num);
+        return max;
     }
 }
